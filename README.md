@@ -77,19 +77,6 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch: `git push origin feature/new-feature`
 5. Submit a pull request
 
-## 📝 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## 🐛 Bug Reports
-
-If you discover any bugs, please create an issue in the GitHub repository including:
-
-1. Your operating system
-2. Steps to reproduce the bug
-3. Expected behavior
-4. Actual behavior
-
 ## 📚 Learn More
 
 - [React Documentation](https://reactjs.org/)
