@@ -49,7 +49,7 @@ export default [
     },
   },
   {
-    ignores: ["**.config.js", "**/components/ui/**/*.tsx"],
+    ignores: ["**.config.cjs", "**.config.js", "**/components/ui/**/*.tsx"],
   },
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
