@@ -1,5 +1,5 @@
 import React from "react";
-import { Calendar, Plus, Trash } from "lucide-react";
+import { Calendar, Trash } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import Lottie from "lottie-react";
 import { format } from "date-fns";
