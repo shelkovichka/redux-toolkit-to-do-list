@@ -24,13 +24,13 @@ A modern task management application built with React and Redux Toolkit.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/redux-toolkit-todo.git
+git clone https://github.com/yourusername/redux-toolkit-to-do-list.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd redux-toolkit-todo
+cd redux-toolkit-to-do-list
 ```
 
 3. Install dependencies:
