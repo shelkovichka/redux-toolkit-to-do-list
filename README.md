@@ -52,21 +52,6 @@ npm start
 - `npm run build` - Builds the app for production in the `build` folder
 - `npm run eject` - Removes the single build dependency from your project
 
-## 📖 Usage Guide
-
-### Basic Operations
-
-- Add a new task by typing in the input field and pressing Enter
-- Click the checkbox to mark a task as complete
-- Use the delete icon to remove a task
-- Click the calendar icon to set or modify due dates
-
-### Additional Features
-
-- Use the theme toggle in the top-right corner to switch between light and dark modes
-- Tasks are automatically saved to local storage
-- Responsive design works on both desktop and mobile devices
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please follow these steps:

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 
@@ -17,17 +17,17 @@ interface DatePickerProps {
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({ value, onDateChange }) => {
-  const [date, setDate] = React.useState<Date | null>(value);
-
-  React.useEffect(() => {
-    setDate(value);
-  }, [value]);
+  const [date, setDate] = useState<Date | null>(value);
 
   const handleDateChange = (selectedDate: Date | undefined) => {
     const newDate = selectedDate || null;
     setDate(newDate);
     onDateChange(newDate);
   };
+
+  useEffect(() => {
+    setDate(value);
+  }, [value]);
 
   return (
     <Popover>
