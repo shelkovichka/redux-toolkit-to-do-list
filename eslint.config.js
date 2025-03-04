@@ -11,6 +11,11 @@ export default [
     languageOptions: {
       globals: globals.browser,
     },
+    compilerOptions: {
+      moduleResolution: "node",
+      esModuleInterop: true,
+      allowSyntheticDefaultImports: true,
+    },
     plugins: {
       import: importPlugin,
       "unused-imports": unusedImports,
