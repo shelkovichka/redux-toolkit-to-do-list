@@ -15,7 +15,8 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   },
   "include": ["src"]
 }

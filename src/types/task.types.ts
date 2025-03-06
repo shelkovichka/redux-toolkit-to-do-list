@@ -1,10 +1,19 @@
 export interface Task {
   id: string;
   title: string;
-  date: string | null;
-  checked: boolean;
+  date?: Date | null;
+  tag: string;
 }
 
 export interface TaskState {
   tasks: Task[];
+  filterTag: string | null;
 }
+
+export const TAG_OPTIONS = [
+  { value: "personal", label: "Personal" },
+  { value: "work", label: "Work" },
+  { value: "important", label: "Important" },
+  { value: "idea", label: "Idea" },
+  { value: "study", label: "Study" },
+];

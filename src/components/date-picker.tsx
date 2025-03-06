@@ -12,14 +12,14 @@ import {
 } from "@/components/ui/popover";
 
 interface DatePickerProps {
-  value: Date | null;
+  value?: Date | null;
   onDateChange: (date: Date | null) => void;
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({ value, onDateChange }) => {
-  const [date, setDate] = useState<Date | null>(value);
+  const [date, setDate] = useState<Date | null | undefined>(value);
 
-  const handleDateChange = (selectedDate: Date | undefined) => {
+  const handleDateChange = (selectedDate?: Date) => {
     const newDate = selectedDate || null;
     setDate(newDate);
     onDateChange(newDate);

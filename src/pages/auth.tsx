@@ -4,12 +4,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAuth } from "@/hooks/use-auth";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import { useNavigate } from "react-router-dom";
 
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { selectAuthLoading } from "@/redux/selectors/auth-selectors";
+import logo from "@/assets/img.png";
 
 interface AuthFormData {
   email: string;
@@ -28,8 +29,9 @@ const schema = yup.object().shape({
 
 const Auth: React.FC = () => {
   const { signUp, login } = useAuth();
-  const loading = useSelector((state: RootState) => state.auth.loading);
   const navigate = useNavigate();
+
+  const loading = useSelector(selectAuthLoading);
   const [isRegistering, setIsRegistering] = useState(false);
 
   const { handleSubmit, control, reset } = useForm<AuthFormData>({
@@ -46,43 +48,48 @@ const Auth: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">
-      <Card className="p-6 w-96">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col space-y-6"
-        >
-          <h2 className="text-lg font-semibold">
-            {isRegistering ? "Регистрация" : "Вход"}
-          </h2>
-
-          <Controller
-            name="email"
-            control={control}
-            render={({ field }) => <Input {...field} placeholder="Email" />}
-          />
-          <Controller
-            name="password"
-            control={control}
-            render={({ field }) => (
-              <Input {...field} type="password" placeholder="Password" />
-            )}
-          />
-
-          <Button type="submit" className="w-full" disabled={loading}>
-            {isRegistering ? "Зарегистрироваться" : "Войти"}
-          </Button>
-
-          <p
-            onClick={() => setIsRegistering(!isRegistering)}
-            className="text-sm text-blue-500 cursor-pointer"
+    <div className="w-full h-[80dvh] flex items-center justify-center">
+      <div className="hidden md:flex flex-1">
+        <img src={logo} alt="Logo" />
+      </div>
+      <div className="flex-1 flex items-center justify-center md:justify-start">
+        <Card className="p-6 w-96 m-6">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col space-y-6"
           >
-            {isRegistering
-              ? "Уже есть аккаунт? Войти"
-              : "Нет аккаунта? Регистрация"}
-          </p>
-        </form>
-      </Card>
+            <h2 className="text-lg font-semibold">
+              {isRegistering ? "Sign Up" : "Log In"}
+            </h2>
+
+            <Controller
+              name="email"
+              control={control}
+              render={({ field }) => <Input {...field} placeholder="Email" />}
+            />
+            <Controller
+              name="password"
+              control={control}
+              render={({ field }) => (
+                <Input {...field} type="password" placeholder="Password" />
+              )}
+            />
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {isRegistering ? "Sign Up" : "Log In"}
+            </Button>
+
+            <p
+              onClick={() => setIsRegistering(!isRegistering)}
+              className="text-sm text-blue-500 cursor-pointer"
+            >
+              {isRegistering
+                ? "Have account? Log In"
+                : "Don't have account? Sign Up"}
+            </p>
+          </form>
+        </Card>
+      </div>
     </div>
   );
 };

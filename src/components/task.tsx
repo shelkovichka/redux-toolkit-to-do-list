@@ -3,51 +3,48 @@ import { Calendar, Trash } from "lucide-react";
 import { format } from "date-fns";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import EditTask from "@/components/edit-task";
+import useTagColor from "@/hooks/use-tag-color";
 
 interface TaskProps {
   id: string;
   title: string;
-  date: string | null;
-  checked: boolean;
-  onCheckboxChange: (id: string, checked: boolean) => void;
+  date?: Date | null;
+  tag: string;
   onDelete: (id: string) => void;
 }
 
-const Task: React.FC<TaskProps> = ({
-  id,
-  title,
-  date,
-  checked,
-  onCheckboxChange,
-  onDelete,
-}) => {
-  const formatDate = (date: string | null) => {
-    if (date) return format(date, "dd.MM.yy");
-  };
-
+const Task: React.FC<TaskProps> = ({ id, title, date, tag, onDelete }) => {
+  const tagColor = useTagColor(tag);
   return (
-    <div className="flex justify-between items-center rounded-lg p-4 bg-muted text-muted-foreground">
-      <div className="flex-col space-y-2">
+    <Card
+      className={`relative size-64 sm:size-80 md:size-64 lg:size-80 ${tagColor}`}
+    >
+      <CardHeader />
+      <CardContent>
         <div className="flex items-center gap-4">
-          <Checkbox
-            checked={checked}
-            onCheckedChange={(checked: boolean) =>
-              onCheckboxChange(id, checked)
-            }
-          />
-          <p className={`${checked ? "line-through" : ""}`}>{title}</p>
+          <p className="tex-md lg:text-xl py-4 text-black">{title}</p>
         </div>
-        <div className="flex gap-4">
-          <Calendar className="w-4 h-4" />
-          <p className="text-sm">Due {formatDate(date)}</p>
+        <div className="absolute top-4 right-4">
+          <EditTask id={id} title={title} date={date} tag={tag} />
         </div>
-      </div>
-
-      <Button variant="ghost" onClick={() => onDelete(id)}>
-        <Trash className="w-5 h-5" />
-      </Button>
-    </div>
+        {date && (
+          <div className="absolute bottom-4 left-4 flex gap-4 items-center">
+            <Calendar className="w-4 h-4 text-black" />
+            <p className="text-md text-black">{format(date, "PP")}</p>
+          </div>
+        )}
+        <div className="absolute bottom-4 right-4">
+          <Button
+            className="h-10 w-10 rounded-full"
+            onClick={() => onDelete(id)}
+          >
+            <Trash />
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
