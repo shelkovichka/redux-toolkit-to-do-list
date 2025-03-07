@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { Task, TaskState } from "@/types/task.types";
 
 const initialState: TaskState = {
@@ -17,8 +18,8 @@ export const taskSlice = createSlice({
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
     updateTask: (
-      state,
-      action: PayloadAction<Partial<Task> & { id: string }>
+        state,
+        action: PayloadAction<Partial<Task> & { id: string }>,
     ) => {
       const { id, ...changes } = action.payload;
       const task = state.tasks.find((task) => task.id === id);

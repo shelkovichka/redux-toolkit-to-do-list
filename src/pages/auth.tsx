@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useAuth } from "@/hooks/use-auth";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { useAuth } from "@/hooks/use-auth";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -19,11 +19,11 @@ interface AuthFormData {
 
 const schema = yup.object().shape({
   email: yup
-    .string()
-    .lowercase()
-    .email("Invalid e-mail")
-    .required("Email is required")
-    .trim(),
+      .string()
+      .lowercase()
+      .email("Invalid e-mail")
+      .required("Email is required")
+      .trim(),
   password: yup.string().required("Password is required").trim(),
 });
 
@@ -45,9 +45,11 @@ const Auth: React.FC = () => {
   });
 
   const onSubmit = async ({ email, password }: AuthFormData) => {
-    isRegistering
-      ? await signUp(email, password)
-      : await login(email, password);
+    if (isRegistering) {
+      await signUp(email, password);
+    } else {
+      await login(email, password);
+    }
     navigate("/");
     reset();
   };
@@ -93,9 +95,9 @@ const Auth: React.FC = () => {
               onClick={() => setIsRegistering(!isRegistering)}
               className="text-sm text-blue-500 cursor-pointer"
             >
-              {isRegistering
-                ? "Have account? Log In"
-                : "Don't have account? Sign Up"}
+              {isRegistering ?
+                "Have account? Log In" :
+                "Don't have account? Sign Up"}
             </p>
           </form>
         </Card>

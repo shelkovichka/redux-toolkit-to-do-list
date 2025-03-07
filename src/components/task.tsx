@@ -12,11 +12,19 @@ interface TaskProps extends TaskType {
   onDelete: (id: string) => void;
 }
 
-const Task: React.FC<TaskProps> = ({ id, title, date, tag, userId, onDelete }) => {
+const Task: React.FC<TaskProps> = ({
+  id,
+  title,
+  date,
+  tag,
+  userId,
+  onDelete,
+}) => {
   const tagColor = useTagColor(tag);
   return (
     <Card
-      className={`relative size-64 sm:size-80 md:size-64 lg:size-80 ${tagColor}`}
+      className={`relative size-64 sm:size-80 md:size-64 
+        lg:size-80 ${tagColor}`}
     >
       <CardHeader />
       <CardContent>
@@ -24,7 +32,13 @@ const Task: React.FC<TaskProps> = ({ id, title, date, tag, userId, onDelete }) =
           <p className="tex-md lg:text-xl py-4 text-black">{title}</p>
         </div>
         <div className="absolute top-4 right-4">
-          <EditTask id={id} title={title} date={date} tag={tag} userId={userId} />
+          <EditTask
+            id={id}
+            title={title}
+            date={date}
+            tag={tag}
+            userId={userId}
+          />
         </div>
         {date && (
           <div className="absolute bottom-4 left-4 flex gap-4 items-center">

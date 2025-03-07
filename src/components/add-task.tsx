@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Plus } from "lucide-react";
 
@@ -12,10 +13,10 @@ const AddTask = () => {
 
   const handleAddTask = (data: Task) => {
     dispatch(
-      addTask({
-        ...data,
-        userId,
-      })
+        addTask({
+          ...data,
+          userId,
+        }),
     );
   };
 

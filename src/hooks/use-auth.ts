@@ -1,7 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setAuthState, logout } from "@/redux/slices/auth-slice";
 import { enqueueSnackbar } from "notistack";
-import { auth } from "@/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,6 +7,9 @@ import {
   UserCredential,
 } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
+
+import { auth } from "@/firebase";
+import { setAuthState, logout } from "@/redux/slices/auth-slice";
 import { selectAuthLoading } from "@/redux/selectors/auth-selectors";
 
 const errorMessages: Record<string, string> = {
@@ -33,17 +34,17 @@ export const useAuth = (): UseAuthReturn => {
 
   const handleError = (error: unknown): void => {
     const errorMessage =
-      error instanceof FirebaseError
-        ? errorMessages[error.code] || "An error occurred."
-        : "An unknown error occurred.";
+      error instanceof FirebaseError ?
+        errorMessages[error.code] || "An error occurred." :
+        "An unknown error occurred.";
 
     dispatch(setAuthState({ loading: false, error: errorMessage }));
     enqueueSnackbar(errorMessage, { variant: "error" });
   };
 
   const handleSuccess = (
-    userCredential: UserCredential | null,
-    message: string
+      userCredential: UserCredential | null,
+      message: string,
   ): void => {
     if (userCredential) {
       dispatch(setAuthState({ loading: false, user: userCredential.user }));
@@ -57,9 +58,9 @@ export const useAuth = (): UseAuthReturn => {
     dispatch(setAuthState({ loading: true, error: null }));
     try {
       const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
+          auth,
+          email,
+          password,
       );
       handleSuccess(userCredential, "Registration successful!");
     } catch (error) {
@@ -71,9 +72,9 @@ export const useAuth = (): UseAuthReturn => {
     dispatch(setAuthState({ loading: true, error: null }));
     try {
       const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
+          auth,
+          email,
+          password,
       );
       handleSuccess(userCredential, "Login successful!");
     } catch (error) {

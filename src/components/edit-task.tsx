@@ -1,7 +1,10 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Pencil } from "lucide-react";
+
 import { Task } from "@/types/task.types";
 import { updateTask } from "@/redux/slices/task-slice";
+
 import TaskForm from "./task-form";
 
 export const EditTask: React.FC<Task> = (task) => {
@@ -9,10 +12,10 @@ export const EditTask: React.FC<Task> = (task) => {
 
   const handleUpdateTask = (data: Task) => {
     dispatch(
-      updateTask({
-        ...data,
-        userId: task.userId,
-      })
+        updateTask({
+          ...data,
+          userId: task.userId,
+        }),
     );
   };
 

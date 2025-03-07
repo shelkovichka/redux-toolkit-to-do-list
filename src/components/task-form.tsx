@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Pencil, Plus } from "lucide-react";
-import { useDispatch } from "react-redux";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -27,9 +25,9 @@ import { Task, TaskFormData, TAG_OPTIONS } from "@/types/task.types";
 
 const schema = yup.object().shape({
   title: yup
-    .string()
-    .max(100, "Max number of symbols is 100")
-    .required("Title is required"),
+      .string()
+      .max(100, "Max number of symbols is 100")
+      .required("Title is required"),
   date: yup.date().nullable(),
   tag: yup.string().required("Tag is required"),
 });

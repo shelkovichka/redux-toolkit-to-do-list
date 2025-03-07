@@ -5,6 +5,7 @@ import { SnackbarProvider } from "notistack";
 import { ThemeProvider } from "@/context/theme-provider";
 import Layout from "@/components/layout";
 import Home from "@/pages/home";
+
 import Auth from "./pages/auth";
 import ProtectedRoute from "./routes/protected-route";
 

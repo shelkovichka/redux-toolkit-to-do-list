@@ -1,11 +1,12 @@
 import React from "react";
-import { Moon, Sun, CalendarCheck } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useSelector } from "react-redux";
 
 import { useTheme } from "@/context/theme-provider";
-import { Button } from "./ui/button";
 import { useAuth } from "@/hooks/use-auth";
 import { selectAuthUser } from "@/redux/selectors/auth-selectors";
+
+import { Button } from "./ui/button";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -26,14 +27,19 @@ const Header = () => {
         <div className="flex gap-4">
           <div
             onClick={() => setTheme(isDark ? "light" : "dark")}
-            className={`flex items-center cursor-pointer transition-transform duration-500 ${
-              isDark ? "rotate-180" : "rotate-0"
-            }`}
+            className={`flex items-center cursor-pointer transition-transform 
+              duration-500 ${isDark ? "rotate-180" : "rotate-0"}`}
           >
             {isDark ? (
-              <Sun className="h-6 w-6 text-yellow-200 rotate-0 transition-all" />
+              <Sun
+                className="h-6 w-6 text-yellow-200 rotate-0
+                  transition-all"
+              />
             ) : (
-              <Moon className="h-6 w-6 text-blue-300 rotate-0 transition-all" />
+              <Moon
+                className="h-6 w-6 text-blue-300 rotate-0
+                  transition-all"
+              />
             )}
           </div>
           {user && (
