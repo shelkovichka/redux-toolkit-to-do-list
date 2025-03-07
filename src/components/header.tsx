@@ -5,14 +5,14 @@ import { useSelector } from "react-redux";
 import { useTheme } from "@/context/theme-provider";
 import { Button } from "./ui/button";
 import { useAuth } from "@/hooks/use-auth";
-import { selectUser } from "@/redux/selectors/auth-selectors";
+import { selectAuthUser } from "@/redux/selectors/auth-selectors";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
-  const isDark = theme === "dark";
   const { logout } = useAuth();
 
-  const user = useSelector(selectUser);
+  const isDark = theme === "dark";
+  const user = useSelector(selectAuthUser);
 
   return (
     <header

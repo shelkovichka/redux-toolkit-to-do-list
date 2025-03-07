@@ -6,16 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import EditTask from "@/components/edit-task";
 import useTagColor from "@/hooks/use-tag-color";
+import { Task as TaskType } from "@/types/task.types";
 
-interface TaskProps {
-  id: string;
-  title: string;
-  date?: Date | null;
-  tag: string;
+interface TaskProps extends TaskType {
   onDelete: (id: string) => void;
 }
 
-const Task: React.FC<TaskProps> = ({ id, title, date, tag, onDelete }) => {
+const Task: React.FC<TaskProps> = ({ id, title, date, tag, userId, onDelete }) => {
   const tagColor = useTagColor(tag);
   return (
     <Card
@@ -27,7 +24,7 @@ const Task: React.FC<TaskProps> = ({ id, title, date, tag, onDelete }) => {
           <p className="tex-md lg:text-xl py-4 text-black">{title}</p>
         </div>
         <div className="absolute top-4 right-4">
-          <EditTask id={id} title={title} date={date} tag={tag} />
+          <EditTask id={id} title={title} date={date} tag={tag} userId={userId} />
         </div>
         {date && (
           <div className="absolute bottom-4 left-4 flex gap-4 items-center">

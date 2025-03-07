@@ -3,7 +3,7 @@ import { Task, TaskState } from "@/types/task.types";
 
 const initialState: TaskState = {
   tasks: [],
-  filterTag: null, 
+  filterTag: null,
 };
 
 export const taskSlice = createSlice({
@@ -16,7 +16,10 @@ export const taskSlice = createSlice({
     deleteTask: (state, action: PayloadAction<string>) => {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
-    updateTask: (state, action: PayloadAction<Partial<Task> & { id: string }>) => {
+    updateTask: (
+      state,
+      action: PayloadAction<Partial<Task> & { id: string }>
+    ) => {
       const { id, ...changes } = action.payload;
       const task = state.tasks.find((task) => task.id === id);
       if (task) {
@@ -29,5 +32,6 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { addTask, deleteTask, updateTask, setFilterTag } = taskSlice.actions;
+export const { addTask, deleteTask, updateTask, setFilterTag } =
+  taskSlice.actions;
 export default taskSlice.reducer;

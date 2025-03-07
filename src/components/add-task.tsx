@@ -1,14 +1,27 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Plus } from "lucide-react";
 
 import { addTask } from "@/redux/slices/task-slice";
-import TaskForm from "./task-form";
+import TaskForm from "@/components/task-form";
+import { selectCurrentUserId } from "@/redux/selectors/task-selectors";
+import { Task } from "@/types/task.types";
 
 const AddTask = () => {
   const dispatch = useDispatch();
+  const userId = useSelector(selectCurrentUserId);
+
+  const handleAddTask = (data: Task) => {
+    dispatch(
+      addTask({
+        ...data,
+        userId,
+      })
+    );
+  };
+
   return (
     <TaskForm
-      onSubmit={(data) => dispatch(addTask(data))}
+      onSubmit={handleAddTask}
       buttonLabel="Create a note"
       icon={<Plus />}
     />

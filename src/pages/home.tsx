@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTask } from "@/redux/slices/task-slice";
+import { deleteTask, setFilterTag } from "@/redux/slices/task-slice";
 import Task from "@/components/task";
 import NoTasks from "@/components/no-tasks";
 import { selectFilteredTasks } from "@/redux/selectors/task-selectors";
@@ -12,6 +12,10 @@ const Home = () => {
   const handleDeleteTask = (id: string) => {
     dispatch(deleteTask(id));
   };
+
+  useEffect(() => {
+    dispatch(setFilterTag(null));
+  }, [dispatch]);
 
   return (
     <div className="flex justify-center p-10">

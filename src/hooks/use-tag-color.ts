@@ -9,7 +9,7 @@ export const TAG_COLORS: Record<string, string> = {
 };
 
 const useTagColor = (tag: string) => {
-  return useMemo(() => TAG_COLORS[tag] || "", [tag]); 
+  return useMemo(() => TAG_COLORS[tag] || "", [tag]);
 };
 
 export default useTagColor;

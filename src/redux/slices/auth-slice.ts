@@ -1,11 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 interface AuthState {
   user: {
     uid: string;
     email: string | null;
-    // Add any other user fields you need
-    [key: string]: any;
   } | null;
   loading: boolean;
   error: string | null;

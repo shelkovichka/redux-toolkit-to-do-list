@@ -23,7 +23,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import DatePicker from "@/components/date-picker";
-import { Task, TAG_OPTIONS } from "@/types/task.types";
+import { Task, TaskFormData, TAG_OPTIONS } from "@/types/task.types";
 
 const schema = yup.object().shape({
   title: yup
@@ -35,7 +35,7 @@ const schema = yup.object().shape({
 });
 
 interface TaskFormProps {
-  initialData?: Task;
+  initialData?: Partial<Task>;
   onSubmit: (data: Task) => void;
   buttonLabel: string;
   icon: React.ReactNode;
@@ -63,12 +63,11 @@ const TaskForm: React.FC<TaskFormProps> = ({
     },
   });
 
-  const handleFormSubmit = (data: {
-    title: string;
-    date?: Date | null;
-    tag: string;
-  }) => {
-    onSubmit({ id: initialData?.id || Math.random().toString(), ...data });
+  const handleFormSubmit = (data: TaskFormData) => {
+    onSubmit({
+      id: initialData?.id || Math.random().toString(),
+      ...data,
+    });
     setOpen(false);
     reset();
   };

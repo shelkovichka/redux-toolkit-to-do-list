@@ -1,4 +1,3 @@
-// filepath: /Users/vasilisalisa/redux-toolkit-to-do-list/tsconfig.json
 {
   "compilerOptions": {
     "target": "ES6",

@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 
 import Header from "@/components/header";
 import Sidebar from "@/components/sidebar";
-import { selectUser } from "@/redux/selectors/auth-selectors";
+import { selectAuthUser } from "@/redux/selectors/auth-selectors";
 
 const Layout: React.FC<PropsWithChildren> = ({ children }) => {
-  const user = useSelector(selectUser);
+  const user = useSelector(selectAuthUser);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted">

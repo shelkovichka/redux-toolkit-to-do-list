@@ -6,15 +6,32 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  UserCredential,
 } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
-import { RootState } from "@/redux/store";
+import { selectAuthLoading } from "@/redux/selectors/auth-selectors";
 
-export const useAuth = () => {
+const errorMessages: Record<string, string> = {
+  "auth/email-already-in-use": "This email is already registered.",
+  "auth/weak-password": "The password is too weak.",
+  "auth/user-not-found": "Invalid email or password.",
+  "auth/wrong-password": "Invalid email or password.",
+  "auth/too-many-requests": "Too many attempts. Please try again later.",
+  "auth/invalid-credential": "Invalid credentials.",
+};
+
+interface UseAuthReturn {
+  loading: boolean;
+  signUp: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => Promise<void>;
+}
+
+export const useAuth = (): UseAuthReturn => {
   const dispatch = useDispatch();
-  const loading = useSelector((state: RootState) => state.auth.loading);
+  const loading = useSelector(selectAuthLoading);
 
-  const handleError = (error: unknown) => {
+  const handleError = (error: unknown): void => {
     const errorMessage =
       error instanceof FirebaseError
         ? errorMessages[error.code] || "An error occurred."
@@ -24,7 +41,19 @@ export const useAuth = () => {
     enqueueSnackbar(errorMessage, { variant: "error" });
   };
 
-  const signUp = async (email: string, password: string) => {
+  const handleSuccess = (
+    userCredential: UserCredential | null,
+    message: string
+  ): void => {
+    if (userCredential) {
+      dispatch(setAuthState({ loading: false, user: userCredential.user }));
+    } else {
+      dispatch(setAuthState({ loading: false }));
+    }
+    enqueueSnackbar(message, { variant: "success" });
+  };
+
+  const signUp = async (email: string, password: string): Promise<void> => {
     dispatch(setAuthState({ loading: true, error: null }));
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -32,14 +61,13 @@ export const useAuth = () => {
         email,
         password
       );
-      dispatch(setAuthState({ loading: false, user: userCredential.user }));
-      enqueueSnackbar("Registration successful!", { variant: "success" });
+      handleSuccess(userCredential, "Registration successful!");
     } catch (error) {
       handleError(error);
     }
   };
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, password: string): Promise<void> => {
     dispatch(setAuthState({ loading: true, error: null }));
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -47,34 +75,22 @@ export const useAuth = () => {
         email,
         password
       );
-      dispatch(setAuthState({ loading: false, user: userCredential.user }));
-      enqueueSnackbar("Login successful!", { variant: "success" });
+      handleSuccess(userCredential, "Login successful!");
     } catch (error) {
       handleError(error);
     }
   };
 
-  const logoutUser = async () => {
+  const logoutUser = async (): Promise<void> => {
     dispatch(setAuthState({ loading: true }));
     try {
       await signOut(auth);
       dispatch(logout());
-      enqueueSnackbar("You have successfully logged out.", {
-        variant: "success",
-      });
+      handleSuccess(null, "You have successfully logged out.");
     } catch (error) {
       handleError(error);
     }
   };
 
   return { loading, signUp, login, logout: logoutUser };
-};
-
-const errorMessages: Record<string, string> = {
-  "auth/email-already-in-use": "This email is already registered.",
-  "auth/weak-password": "The password is too weak.",
-  "auth/user-not-found": "Invalid email or password.",
-  "auth/wrong-password": "Invalid email or password.",
-  "auth/too-many-requests": "Too many attempts. Please try again later.",
-  "auth/invalid-credential": "Invalid credentials.",
 };

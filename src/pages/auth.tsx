@@ -34,7 +34,12 @@ const Auth: React.FC = () => {
   const loading = useSelector(selectAuthLoading);
   const [isRegistering, setIsRegistering] = useState(false);
 
-  const { handleSubmit, control, reset } = useForm<AuthFormData>({
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm<AuthFormData>({
     resolver: yupResolver(schema),
     defaultValues: { email: "", password: "" },
   });
@@ -67,6 +72,11 @@ const Auth: React.FC = () => {
               control={control}
               render={({ field }) => <Input {...field} placeholder="Email" />}
             />
+            {errors.email && (
+              <p className="absolute top-9 left-3.5 text-red-500 text-sm">
+                {errors.email.message}
+              </p>
+            )}
             <Controller
               name="password"
               control={control}

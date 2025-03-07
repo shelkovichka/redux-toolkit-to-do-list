@@ -3,6 +3,7 @@ export interface Task {
   title: string;
   date?: Date | null;
   tag: string;
+  userId?: string;
 }
 
 export interface TaskState {
@@ -17,3 +18,5 @@ export const TAG_OPTIONS = [
   { value: "idea", label: "Idea" },
   { value: "study", label: "Study" },
 ];
+
+export type TaskFormData = Omit<Task, "id">;
