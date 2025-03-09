@@ -24,6 +24,7 @@ const AddTask = () => {
     <TaskForm
       onSubmit={handleAddTask}
       buttonLabel="Create a note"
+      className="size-10"
       icon={<Plus />}
     />
   );

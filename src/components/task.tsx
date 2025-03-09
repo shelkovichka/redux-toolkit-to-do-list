@@ -17,10 +17,10 @@ const Task: React.FC<TaskProps> = ({
   title,
   date,
   tag,
-  userId,
   onDelete,
 }) => {
   const tagColor = useTagColor(tag);
+
   return (
     <Card className={`relative task-card-size ${tagColor}`}>
       <CardHeader />
@@ -29,13 +29,7 @@ const Task: React.FC<TaskProps> = ({
           <p className="tex-md lg:text-xl py-4 text-black">{title}</p>
         </div>
         <div className="absolute top-4 right-4">
-          <EditTask
-            id={id}
-            title={title}
-            date={date}
-            tag={tag}
-            userId={userId}
-          />
+          <EditTask id={id} title={title} date={date} tag={tag} />
         </div>
         {date && (
           <div className="absolute bottom-4 left-4 flex gap-4 items-center">

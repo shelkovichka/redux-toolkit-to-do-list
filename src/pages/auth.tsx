@@ -19,11 +19,11 @@ interface AuthFormData {
 
 const schema = yup.object().shape({
   email: yup
-    .string()
-    .lowercase()
-    .email("Invalid e-mail")
-    .required("Email is required")
-    .trim(),
+      .string()
+      .lowercase()
+      .email("Invalid e-mail")
+      .required("Email is required")
+      .trim(),
   password: yup.string().required("Password is required").trim(),
 });
 
@@ -94,9 +94,9 @@ const Auth: React.FC = () => {
               onClick={() => setIsRegistering(!isRegistering)}
               className="text-sm text-blue-500 cursor-pointer"
             >
-              {isRegistering
-                ? "Have account? Log In"
-                : "Don't have account? Sign Up"}
+              {isRegistering ?
+                "Have account? Log In" :
+                "Don't have account? Sign Up"}
             </p>
           </form>
         </Card>

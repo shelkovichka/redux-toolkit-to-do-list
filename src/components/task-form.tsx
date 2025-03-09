@@ -3,6 +3,7 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { cn } from "@/lib/utils";
 import {
   Dialog,
   DialogTrigger,
@@ -25,9 +26,9 @@ import { Task, TaskFormData, TAG_OPTIONS } from "@/types/task.types";
 
 const schema = yup.object().shape({
   title: yup
-    .string()
-    .max(100, "Max number of symbols is 100")
-    .required("Title is required"),
+      .string()
+      .max(100, "Max number of symbols is 100")
+      .required("Title is required"),
   date: yup.date().nullable(),
   tag: yup.string().required("Tag is required"),
 });
@@ -37,6 +38,7 @@ interface TaskFormProps {
   onSubmit: (data: Task) => void;
   buttonLabel: string;
   icon: React.ReactNode;
+  className?: string;
 }
 
 const TaskForm: React.FC<TaskFormProps> = ({
@@ -44,6 +46,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
   onSubmit,
   buttonLabel,
   icon,
+  className,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -63,8 +66,9 @@ const TaskForm: React.FC<TaskFormProps> = ({
 
   const handleFormSubmit = (data: TaskFormData) => {
     onSubmit({
-      id: initialData?.id || Math.random().toString(),
       ...data,
+      id: initialData?.id || Math.random().toString(),
+      userId: initialData?.userId,
     });
     setOpen(false);
     reset();
@@ -74,7 +78,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
-          className="size-8 md:size-10 rounded-full"
+          className={cn("rounded-full", className)}
           onClick={() => setOpen(true)}
         >
           {icon}
