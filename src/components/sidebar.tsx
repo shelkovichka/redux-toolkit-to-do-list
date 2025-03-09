@@ -20,7 +20,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex-col space-y-20 h-full border-r-2 p-4 z-15">
+    <div className="flex-col space-y-20 h-full border-r-2 p-4">
       <div className="flex items-center justify-center mt-4">
         <h1 className="text-xl font-bold cursor-pointer" onClick={resetFilter}>
           Notie

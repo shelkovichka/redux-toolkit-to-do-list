@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 import { useTheme } from "@/context/theme-provider";
 import { useAuth } from "@/hooks/use-auth";
 import { selectAuthUser } from "@/redux/selectors/auth-selectors";
-
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
+import MobileMenu from "@/components/mobile-menu";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -21,9 +21,10 @@ const Header = () => {
         backdrop-blur py-0 md:py-2 supports-[backdrop-filter]:bg-background/60"
     >
       <div
-        className="container mx-auto flex h-16 items-center
-          justify-end"
+        className="container mx-auto px-4 flex h-16 items-center
+          justify-between md:justify-end"
       >
+        <MobileMenu />
         <div className="flex gap-4">
           <div
             onClick={() => setTheme(isDark ? "light" : "dark")}

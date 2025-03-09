@@ -22,10 +22,7 @@ const Task: React.FC<TaskProps> = ({
 }) => {
   const tagColor = useTagColor(tag);
   return (
-    <Card
-      className={`relative size-64 sm:size-80 md:size-64 
-        lg:size-80 ${tagColor}`}
-    >
+    <Card className={`relative task-card-size ${tagColor}`}>
       <CardHeader />
       <CardContent>
         <div className="flex items-center gap-4">
@@ -48,7 +45,7 @@ const Task: React.FC<TaskProps> = ({
         )}
         <div className="absolute bottom-4 right-4">
           <Button
-            className="h-10 w-10 rounded-full"
+            className="size-8 md:size-10 rounded-full"
             onClick={() => onDelete(id)}
           >
             <Trash />

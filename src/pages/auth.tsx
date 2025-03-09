@@ -19,11 +19,11 @@ interface AuthFormData {
 
 const schema = yup.object().shape({
   email: yup
-      .string()
-      .lowercase()
-      .email("Invalid e-mail")
-      .required("Email is required")
-      .trim(),
+    .string()
+    .lowercase()
+    .email("Invalid e-mail")
+    .required("Email is required")
+    .trim(),
   password: yup.string().required("Password is required").trim(),
 });
 
@@ -59,8 +59,8 @@ const Auth: React.FC = () => {
       <div className="hidden md:flex flex-1">
         <img src={logo} alt="Logo" />
       </div>
-      <div className="flex-1 flex items-center justify-center md:justify-start">
-        <Card className="p-6 w-96 m-6">
+      <div className="flex flex-1 items-center justify-center md:justify-start">
+        <Card className="p-6 m-0 w-full max-w-96">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col space-y-6"
@@ -68,7 +68,6 @@ const Auth: React.FC = () => {
             <h2 className="text-lg font-semibold">
               {isRegistering ? "Sign Up" : "Log In"}
             </h2>
-
             <Controller
               name="email"
               control={control}
@@ -95,9 +94,9 @@ const Auth: React.FC = () => {
               onClick={() => setIsRegistering(!isRegistering)}
               className="text-sm text-blue-500 cursor-pointer"
             >
-              {isRegistering ?
-                "Have account? Log In" :
-                "Don't have account? Sign Up"}
+              {isRegistering
+                ? "Have account? Log In"
+                : "Don't have account? Sign Up"}
             </p>
           </form>
         </Card>

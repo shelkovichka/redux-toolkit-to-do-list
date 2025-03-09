@@ -20,9 +20,16 @@ const Home = () => {
 
   return (
     <div className="flex justify-center p-10">
-      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+      <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-8">
         {tasks.map((task) => (
-          <Task key={task.id} onDelete={handleDeleteTask} {...task} />
+          <Task
+            key={task.id}
+            id={task.id}
+            title={task.title}
+            date={task.date}
+            tag={task.tag}
+            onDelete={handleDeleteTask}
+          />
         ))}
         {tasks.length === 0 && <NoTasks />}
       </div>

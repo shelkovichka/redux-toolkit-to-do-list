@@ -25,9 +25,9 @@ import { Task, TaskFormData, TAG_OPTIONS } from "@/types/task.types";
 
 const schema = yup.object().shape({
   title: yup
-      .string()
-      .max(100, "Max number of symbols is 100")
-      .required("Title is required"),
+    .string()
+    .max(100, "Max number of symbols is 100")
+    .required("Title is required"),
   date: yup.date().nullable(),
   tag: yup.string().required("Tag is required"),
 });
@@ -74,17 +74,14 @@ const TaskForm: React.FC<TaskFormProps> = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
-          className="h-10 w-10 rounded-full"
+          className="size-8 md:size-10 rounded-full"
           onClick={() => setOpen(true)}
         >
           {icon}
         </Button>
       </DialogTrigger>
-      <DialogContent className="min-h-[250px]">
-        <form
-          onSubmit={handleSubmit(handleFormSubmit)}
-          className="w-full space-y-6"
-        >
+      <DialogContent className="min-h-[250px] max-w-[450px]">
+        <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
           <DialogHeader className="mb-6">
             <DialogTitle>Notes</DialogTitle>
             <DialogDescription>{buttonLabel}</DialogDescription>

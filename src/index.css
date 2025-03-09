@@ -63,7 +63,31 @@
   width: 0;
 }
 
+.task-card-size {
+  height: 18rem;
+  width: 18rem;
+}
 
+@media (min-width: 640px) {
+  .task-card-size {
+    height: 14rem;
+    width: 14rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .task-card-size {
+    height: 16rem;
+    width: 16rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .task-card-size {
+    height: 20rem;
+    width: 20rem;
+  }
+}
 
 @layer base {
   * {
