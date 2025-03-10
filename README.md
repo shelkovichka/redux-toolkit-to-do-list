@@ -4,6 +4,8 @@ A modern task management application built with React and Redux Toolkit.
 
 ![Todo App Screenshot](./public/screenshot.png)
 
+[Live Demo](https://notiee.netlify.app/)
+
 ## 🛠 Technologies
 
 - **React** - JavaScript library for building user interfaces
