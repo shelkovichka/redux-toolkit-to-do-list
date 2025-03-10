@@ -8,16 +8,21 @@ A modern task management application built with React and Redux Toolkit.
 
 - **React** - JavaScript library for building user interfaces
 - **Redux Toolkit** - The official toolset for efficient Redux development
-- **React Calendar** - Calendar component for date selection
 - **Tailwind CSS** - A utility-first CSS framework for styling
+- **Tailwind CSS** - A utility-first CSS framework for styling
+- **React Hook Form** - Performant, flexible, and extensible forms with easy-to-use validation
+- **Yup** - JavaScript schema builder for value parsing and validation
+- **Firebase** - Backend platform for building web and mobile applications
 
 ## ✨ Features
 
-- ✅ Create, delete and mark tasks as complete
+- ✅ Create, delete and update tasks
 - 📅 Set due dates for each task
+- 🏷️ Tag tasks with categories like Personal, Work, Important, etc.
 - 🌓 Light and dark theme support
 - 📱 Responsive design
 - 🗂 Convenient state management with Redux Toolkit
+- 🔒 Authentication with protected routes using Firebase
 
 ## 🚀 Installation and Setup
 
@@ -51,6 +56,8 @@ npm start
 - `npm test` - Launches the test runner in interactive watch mode
 - `npm run build` - Builds the app for production in the `build` folder
 - `npm run eject` - Removes the single build dependency from your project
+
+![Todo App Screenshot](./public/screenshot1.png)
 
 ## 🤝 Contributing
 
