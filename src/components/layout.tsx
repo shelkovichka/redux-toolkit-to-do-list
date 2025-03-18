@@ -1,25 +1,29 @@
-import React, { PropsWithChildren } from "react";
-import { useSelector } from "react-redux";
+import {FC, type PropsWithChildren} from 'react';
+import {useSelector} from 'react-redux';
+import {Github} from 'lucide-react';
 
-import Header from "@/components/header";
-import Sidebar from "@/components/sidebar";
-import { selectAuthUser } from "@/redux/selectors/auth-selectors";
-import AddTask from "@/components/add-task";
+import Header from '@/components/header';
+import Sidebar from '@/components/sidebar';
+import {selectAuthUser} from '@/redux/selectors/auth-selectors';
+import AddTask from '@/components/add-task';
 
-const Layout: React.FC<PropsWithChildren> = ({ children }) => {
+const Layout: FC<PropsWithChildren> = ({children}) => {
   const user = useSelector(selectAuthUser);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted">
-      <div className="flex min-h-screen">
+    <div
+      className="bg-gradient-to-br from-background to-muted h-screen
+       flex flex-col overflow-hidden"
+    >
+      <div className="flex flex-grow overflow-hidden">
         {user && (
           <aside className="flex-[1_0_15%] hidden md:block">
             <Sidebar />
           </aside>
         )}
-        <div className="overflow-y-auto w-full">
+        <div className="w-full flex flex-col overflow-hidden">
           <Header />
-          <main>{children}</main>
+          <main className="flex-grow overflow-auto">{children}</main>
         </div>
       </div>
 
@@ -31,12 +35,17 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
           <AddTask />
         </div>
       )}
-      <footer
-        className="border-t backdrop-blur py-6
-          supports-[backdrop-filter]:bg-background/60"
-      >
-        <div className="container mx-auto px-4 text-center text-gray-400">
-          <p>♥</p>
+      <footer className="w-full border-t">
+        <div className="container mx-auto flex h-16 text-gray-400 items-center">
+          <a
+            href="https://github.com/shelkovichka"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 hover:text-primary"
+          >
+            <Github />
+            <span>shelkovichka</span>
+          </a>
         </div>
       </footer>
     </div>

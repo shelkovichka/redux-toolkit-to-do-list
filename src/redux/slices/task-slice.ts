@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import { Task, TaskState } from "@/types/task.types";
+import {Task, TaskState} from '@/types/task.types';
 
 const initialState: TaskState = {
   tasks: [],
@@ -8,7 +8,7 @@ const initialState: TaskState = {
 };
 
 export const taskSlice = createSlice({
-  name: "tasks",
+  name: 'tasks',
   initialState,
   reducers: {
     addTask: (state, action: PayloadAction<Task>) => {
@@ -21,7 +21,7 @@ export const taskSlice = createSlice({
         state,
         action: PayloadAction<Partial<Task> & { id: string }>,
     ) => {
-      const { id, ...changes } = action.payload;
+      const {id, ...changes} = action.payload;
       const task = state.tasks.find((task) => task.id === id);
       if (task) {
         Object.assign(task, changes);
@@ -33,6 +33,6 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { addTask, deleteTask, updateTask, setFilterTag } =
+export const {addTask, deleteTask, updateTask, setFilterTag} =
   taskSlice.actions;
 export default taskSlice.reducer;

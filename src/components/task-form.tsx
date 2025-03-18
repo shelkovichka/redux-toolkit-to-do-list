@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import {FC, useState} from 'react';
+import {Controller, useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
-import { cn } from "@/lib/utils";
+import {cn} from '@/lib/utils';
 import {
   Dialog,
   DialogTrigger,
@@ -11,26 +11,26 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/dialog';
+import {Button} from '@/components/ui/button';
+import {Textarea} from '@/components/ui/textarea';
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
-import DatePicker from "@/components/date-picker";
-import { Task, TaskFormData, TAG_OPTIONS } from "@/types/task.types";
+} from '@/components/ui/select';
+import DatePicker from '@/components/date-picker';
+import {Task, TaskFormData, TAG_OPTIONS} from '@/types/task.types';
 
 const schema = yup.object().shape({
   title: yup
       .string()
-      .max(100, "Max number of symbols is 100")
-      .required("Title is required"),
+      .max(100, 'Max number of symbols is 100')
+      .required('Title is required'),
   date: yup.date().nullable(),
-  tag: yup.string().required("Tag is required"),
+  tag: yup.string().required('Tag is required'),
 });
 
 interface TaskFormProps {
@@ -41,7 +41,7 @@ interface TaskFormProps {
   className?: string;
 }
 
-const TaskForm: React.FC<TaskFormProps> = ({
+const TaskForm: FC<TaskFormProps> = ({
   initialData,
   onSubmit,
   buttonLabel,
@@ -53,14 +53,14 @@ const TaskForm: React.FC<TaskFormProps> = ({
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: {errors},
     reset,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      title: initialData?.title || "",
+      title: initialData?.title || '',
       date: initialData?.date ?? null,
-      tag: initialData?.tag || "",
+      tag: initialData?.tag || '',
     },
   });
 
@@ -78,7 +78,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
-          className={cn("rounded-full", className)}
+          className={cn('rounded-full', className)}
           onClick={() => setOpen(true)}
         >
           {icon}
@@ -94,7 +94,13 @@ const TaskForm: React.FC<TaskFormProps> = ({
             <Controller
               name="title"
               control={control}
-              render={({ field }) => <Textarea placeholder="Task" {...field} />}
+              render={({field}) => (
+                <Textarea
+                  placeholder="Task"
+                  {...field}
+                  className="max-h-[200px]"
+                />
+              )}
             />
             {errors.title && (
               <p className="absolute top-15 left-3.5 text-red-500 text-sm">
@@ -107,7 +113,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
               <Controller
                 name="date"
                 control={control}
-                render={({ field }) => (
+                render={({field}) => (
                   <DatePicker
                     value={field.value}
                     onDateChange={field.onChange}
@@ -119,7 +125,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
               <Controller
                 name="tag"
                 control={control}
-                render={({ field: { onChange, value } }) => (
+                render={({field: {onChange, value}}) => (
                   <Select onValueChange={onChange} defaultValue={value}>
                     <SelectTrigger>
                       <SelectValue placeholder="Tag" />

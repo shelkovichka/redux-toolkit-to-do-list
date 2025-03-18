@@ -1,8 +1,7 @@
-import React from "react";
-import Lottie from "lottie-react";
+import Lottie from 'lottie-react';
 
-import { Card } from "@/components/ui/card";
-import emptyAnimation from "@/assets/empty.json";
+import {Card} from '@/components/ui/card';
+import emptyAnimation from '@/assets/empty.json';
 
 const NoTasks = () => {
   return (

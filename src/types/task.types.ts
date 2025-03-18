@@ -12,11 +12,11 @@ export interface TaskState {
 }
 
 export const TAG_OPTIONS = [
-  { value: "personal", label: "Personal" },
-  { value: "work", label: "Work" },
-  { value: "important", label: "Important" },
-  { value: "idea", label: "Idea" },
-  { value: "study", label: "Study" },
+  {value: 'personal', label: 'Personal'},
+  {value: 'work', label: 'Work'},
+  {value: 'important', label: 'Important'},
+  {value: 'idea', label: 'Idea'},
+  {value: 'study', label: 'Study'},
 ];
 
-export type TaskFormData = Omit<Task, "id">;
+export type TaskFormData = Omit<Task, 'id'>;

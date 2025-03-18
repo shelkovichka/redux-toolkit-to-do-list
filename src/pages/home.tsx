@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
-import { deleteTask, setFilterTag } from "@/redux/slices/task-slice";
-import Task from "@/components/task";
-import NoTasks from "@/components/no-tasks";
-import { selectFilteredTasks } from "@/redux/selectors/task-selectors";
+import {deleteTask, setFilterTag} from '@/redux/slices/task-slice';
+import Task from '@/components/task';
+import NoTasks from '@/components/no-tasks';
+import {selectFilteredTasks} from '@/redux/selectors/task-selectors';
 
 const Home = () => {
   const dispatch = useDispatch();

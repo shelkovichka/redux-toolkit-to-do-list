@@ -1,18 +1,18 @@
-import React from "react";
-import { Calendar, Trash } from "lucide-react";
-import { format } from "date-fns";
+import {FC} from 'react';
+import {Calendar, Trash} from 'lucide-react';
+import {format} from 'date-fns';
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import EditTask from "@/components/edit-task";
-import useTagColor from "@/hooks/use-tag-color";
-import { Task as TaskType } from "@/types/task.types";
+import {Button} from '@/components/ui/button';
+import {Card, CardContent, CardHeader} from '@/components/ui/card';
+import EditTask from '@/components/edit-task';
+import useTagColor from '@/hooks/use-tag-color';
+import {Task as TaskType} from '@/types/task.types';
 
 interface TaskProps extends TaskType {
   onDelete: (id: string) => void;
 }
 
-const Task: React.FC<TaskProps> = ({
+const Task: FC<TaskProps> = ({
   id,
   title,
   date,
@@ -34,7 +34,7 @@ const Task: React.FC<TaskProps> = ({
         {date && (
           <div className="absolute bottom-4 left-4 flex gap-4 items-center">
             <Calendar className="w-4 h-4 text-black" />
-            <p className="text-md text-black">{format(date, "PP")}</p>
+            <p className="text-md text-black">{format(date, 'PP')}</p>
           </div>
         )}
         <div className="absolute bottom-4 right-4">

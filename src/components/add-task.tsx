@@ -1,11 +1,10 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Plus } from "lucide-react";
+import {useDispatch, useSelector} from 'react-redux';
+import {Plus} from 'lucide-react';
 
-import { addTask } from "@/redux/slices/task-slice";
-import TaskForm from "@/components/task-form";
-import { selectCurrentUserId } from "@/redux/selectors/task-selectors";
-import { Task } from "@/types/task.types";
+import {addTask} from '@/redux/slices/task-slice';
+import TaskForm from '@/components/task-form';
+import {selectCurrentUserId} from '@/redux/selectors/task-selectors';
+import {Task} from '@/types/task.types';
 
 const AddTask = () => {
   const dispatch = useDispatch();

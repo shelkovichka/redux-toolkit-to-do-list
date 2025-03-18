@@ -1,13 +1,12 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { SnackbarProvider } from "notistack";
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {SnackbarProvider} from 'notistack';
 
-import { ThemeProvider } from "@/context/theme-provider";
-import Layout from "@/components/layout";
-import Home from "@/pages/home";
+import {ThemeProvider} from '@/context/theme-provider';
+import Layout from '@/components/layout';
+import Home from '@/pages/home';
 
-import Auth from "./pages/auth";
-import ProtectedRoute from "./routes/protected-route";
+import Auth from './pages/auth';
+import ProtectedRoute from './routes/protected-route';
 
 const App = () => {
   return (
@@ -15,8 +14,8 @@ const App = () => {
       <ThemeProvider defaultTheme="dark">
         <SnackbarProvider
           anchorOrigin={{
-            vertical: "top",
-            horizontal: "center",
+            vertical: 'top',
+            horizontal: 'center',
           }}
           variant="error"
           maxSnack={1}

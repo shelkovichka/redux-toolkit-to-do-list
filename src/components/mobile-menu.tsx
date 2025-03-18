@@ -1,5 +1,4 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from 'react-redux';
 
 import {
   Menubar,
@@ -8,10 +7,10 @@ import {
   MenubarMenu,
   MenubarSeparator,
   MenubarTrigger,
-} from "@/components/ui/menubar";
-import { setFilterTag } from "@/redux/slices/task-slice";
-import { selectFilterTag } from "@/redux/selectors/task-selectors";
-import { TAG_COLORS } from "@/hooks/use-tag-color";
+} from '@/components/ui/menubar';
+import {setFilterTag} from '@/redux/slices/task-slice';
+import {selectFilterTag} from '@/redux/selectors/task-selectors';
+import {TAG_COLORS} from '@/hooks/use-tag-color';
 
 const MobileMenu = () => {
   const dispatch = useDispatch();

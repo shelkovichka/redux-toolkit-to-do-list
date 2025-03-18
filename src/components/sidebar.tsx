@@ -1,11 +1,10 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from 'react-redux';
 
-import { Button } from "@/components/ui/button";
-import { setFilterTag } from "@/redux/slices/task-slice";
-import { selectFilterTag } from "@/redux/selectors/task-selectors";
-import AddTask from "@/components/add-task";
-import { TAG_COLORS } from "@/hooks/use-tag-color";
+import {Button} from '@/components/ui/button';
+import {setFilterTag} from '@/redux/slices/task-slice';
+import {selectFilterTag} from '@/redux/selectors/task-selectors';
+import AddTask from '@/components/add-task';
+import {TAG_COLORS} from '@/hooks/use-tag-color';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -34,9 +33,12 @@ const Sidebar = () => {
               <div key={tag} className={`size-5 ${color} rounded-full`}>
                 <Button
                   variant="ghost"
-                  className="hover:bg-transparent w-full h-full"
+                  className="hover:bg-transparent w-full h-full
+                    flex items-center justify-center p-0"
                   onClick={() => handleFilter(tag)}
-                />
+                >
+                  {activeFilterTag === tag && <span>✓</span>}
+                </Button>
               </div>
             ))}
           </div>

@@ -1,13 +1,13 @@
-import { combineReducers } from "redux";
-import { configureStore } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import {combineReducers} from 'redux';
+import {configureStore} from '@reduxjs/toolkit';
+import {persistStore, persistReducer} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import taskReducer from "./slices/task-slice";
-import authReducer from "./slices/auth-slice";
+import taskReducer from './slices/task-slice';
+import authReducer from './slices/auth-slice';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage,
 };
 
@@ -23,7 +23,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
+        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
       },
     }),
 });

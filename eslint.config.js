@@ -3,6 +3,11 @@ import pluginReact from "eslint-plugin-react";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 import unusedImports from "eslint-plugin-unused-imports";
+import googleConfig from "eslint-config-google";
+
+const googleRules = { ...googleConfig.rules };
+delete googleRules["valid-jsdoc"];
+delete googleRules["require-jsdoc"];
 
 /** @type {import('eslint').Linter.Config} */
 export default [
@@ -16,13 +21,8 @@ export default [
       "unused-imports": unusedImports,
       react: pluginReact,
     },
-    extends: ["plugin:react/jsx-runtime", "google"],
-    settings: {
-      react: {
-        version: "detect",
-      },
-    },
     rules: {
+      ...googleRules,
       "import/order": [
         "error",
         {
@@ -62,4 +62,10 @@ export default [
   },
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  {
+    files: ["**/*.{jsx,tsx}"],
+    rules: {
+      "react/react-in-jsx-scope": "off",
+    },
+  },
 ];

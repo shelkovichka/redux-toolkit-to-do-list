@@ -1,6 +1,6 @@
-import { createSelector } from "@reduxjs/toolkit";
+import {createSelector} from '@reduxjs/toolkit';
 
-import { RootState } from "@/redux/store";
+import {RootState} from '@/redux/store';
 
 export const selectTasks = (state: RootState) => state.tasks.tasks;
 export const selectFilterTag = (state: RootState) => state.tasks.filterTag;
