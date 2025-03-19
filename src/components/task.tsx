@@ -5,21 +5,16 @@ import {format} from 'date-fns';
 import {Button} from '@/components/ui/button';
 import {Card, CardContent, CardHeader} from '@/components/ui/card';
 import EditTask from '@/components/edit-task';
-import useTagColor from '@/hooks/use-tag-color';
+import {useTheme} from '@/theme/use-theme';
 import {Task as TaskType} from '@/types/task.types';
 
 interface TaskProps extends TaskType {
   onDelete: (id: string) => void;
 }
 
-const Task: FC<TaskProps> = ({
-  id,
-  title,
-  date,
-  tag,
-  onDelete,
-}) => {
-  const tagColor = useTagColor(tag);
+const Task: FC<TaskProps> = ({id, title, date, tag, onDelete}) => {
+  const {tagColors} = useTheme();
+  const tagColor = tagColors[tag];
 
   return (
     <Card className={`relative task-card-size ${tagColor}`}>

@@ -23,6 +23,7 @@ export const EditTask: FC<Task> = (task) => {
 
   return (
     <TaskForm
+      key={`task-${task.id}-${task.tag}-${task.title}`}
       initialData={task}
       onSubmit={handleUpdateTask}
       buttonLabel="Update your note"

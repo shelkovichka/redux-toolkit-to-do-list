@@ -22,15 +22,16 @@ import {
   SelectItem,
 } from '@/components/ui/select';
 import DatePicker from '@/components/date-picker';
-import {Task, TaskFormData, TAG_OPTIONS} from '@/types/task.types';
+import {Task, TAG_OPTIONS} from '@/types/task.types';
+import {TagType} from '@/theme/types';
 
 const schema = yup.object().shape({
   title: yup
       .string()
       .max(100, 'Max number of symbols is 100')
       .required('Title is required'),
-  date: yup.date().nullable(),
-  tag: yup.string().required('Tag is required'),
+  date: yup.date().nullable().defined(),
+  tag: yup.string().required('Tag is required') as yup.Schema<TagType>,
 });
 
 interface TaskFormProps {
@@ -39,6 +40,12 @@ interface TaskFormProps {
   buttonLabel: string;
   icon: React.ReactNode;
   className?: string;
+}
+
+interface FormValues {
+  title: string;
+  date: Date | null;
+  tag: TagType;
 }
 
 const TaskForm: FC<TaskFormProps> = ({
@@ -55,23 +62,23 @@ const TaskForm: FC<TaskFormProps> = ({
     control,
     formState: {errors},
     reset,
-  } = useForm({
+  } = useForm<FormValues>({
     resolver: yupResolver(schema),
     defaultValues: {
       title: initialData?.title || '',
       date: initialData?.date ?? null,
-      tag: initialData?.tag || '',
+      tag: initialData?.tag || 'personal',
     },
   });
 
-  const handleFormSubmit = (data: TaskFormData) => {
+  const handleFormSubmit = (data: FormValues) => {
     onSubmit({
       ...data,
       id: initialData?.id || Math.random().toString(),
       userId: initialData?.userId,
     });
-    setOpen(false);
     reset();
+    setOpen(false);
   };
 
   return (

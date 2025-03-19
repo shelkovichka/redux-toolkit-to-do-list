@@ -1,8 +1,10 @@
+import {TagType} from '@/theme/types';
+
 export interface Task {
   id: string;
   title: string;
-  date?: Date | null;
-  tag: string;
+  date: Date | null;
+  tag: TagType;
   userId?: string;
 }
 
@@ -18,5 +20,3 @@ export const TAG_OPTIONS = [
   {value: 'idea', label: 'Idea'},
   {value: 'study', label: 'Study'},
 ];
-
-export type TaskFormData = Omit<Task, 'id'>;

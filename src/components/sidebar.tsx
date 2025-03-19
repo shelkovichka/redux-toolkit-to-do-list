@@ -4,10 +4,11 @@ import {Button} from '@/components/ui/button';
 import {setFilterTag} from '@/redux/slices/task-slice';
 import {selectFilterTag} from '@/redux/selectors/task-selectors';
 import AddTask from '@/components/add-task';
-import {TAG_COLORS} from '@/hooks/use-tag-color';
+import {useTheme} from '@/theme/use-theme';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const {tagColors} = useTheme();
   const activeFilterTag = useSelector(selectFilterTag);
 
   const handleFilter = (tag: string) => {
@@ -29,7 +30,7 @@ const Sidebar = () => {
         <div className="flex flex-col items-center justify-center space-y-10">
           <AddTask />
           <div className="space-y-6">
-            {Object.entries(TAG_COLORS).map(([tag, color]) => (
+            {Object.entries(tagColors).map(([tag, color]) => (
               <div key={tag} className={`size-5 ${color} rounded-full`}>
                 <Button
                   variant="ghost"

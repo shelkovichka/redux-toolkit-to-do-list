@@ -10,13 +10,16 @@ import {
 } from '@/components/ui/menubar';
 import {setFilterTag} from '@/redux/slices/task-slice';
 import {selectFilterTag} from '@/redux/selectors/task-selectors';
-import {TAG_COLORS} from '@/hooks/use-tag-color';
+import {useTheme} from '@/theme/use-theme';
+import {TagType} from '@/theme/types';
 
 const MobileMenu = () => {
   const dispatch = useDispatch();
+  const {tagColors} = useTheme();
+
   const activeFilterTag = useSelector(selectFilterTag);
 
-  const handleFilter = (tag: string) => {
+  const handleFilter = (tag: TagType) => {
     dispatch(setFilterTag(activeFilterTag === tag ? null : tag));
   };
 
@@ -32,10 +35,10 @@ const MobileMenu = () => {
         </MenubarTrigger>
         <MenubarContent>
           <MenubarSeparator />
-          {Object.entries(TAG_COLORS).map(([tag, color]) => (
+          {(Object.keys(tagColors) as TagType[]).map((tag) => (
             <MenubarItem key={tag} onClick={() => handleFilter(tag)}>
               <div className="flex items-center gap-2">
-                <div className={`size-4 ${color} rounded-full`} />
+                <div className={`size-4 ${tagColors[tag]} rounded-full`} />
                 <span>{tag}</span>
                 {activeFilterTag === tag && <span className="ml-auto">✓</span>}
               </div>

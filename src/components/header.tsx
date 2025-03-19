@@ -1,8 +1,7 @@
-import React from 'react';
 import {LogOut, Moon, Sun} from 'lucide-react';
 import {useSelector} from 'react-redux';
 
-import {useTheme} from '@/context/theme-provider';
+import {useTheme} from '@/theme/use-theme';
 import {useAuth} from '@/hooks/use-auth';
 import {selectAuthUser} from '@/redux/selectors/auth-selectors';
 import {Button} from '@/components/ui/button';
