@@ -8,7 +8,7 @@ import {selectCurrentUserId} from '@/redux/selectors/task-selectors';
 
 import TaskForm from './task-form';
 
-export const EditTask: FC<Task> = (task) => {
+const EditTask: FC<Task> = (task) => {
   const dispatch = useDispatch();
   const currentUserId = useSelector(selectCurrentUserId);
 
