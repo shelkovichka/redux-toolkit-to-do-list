@@ -11,10 +11,10 @@ A modern task management application built with React and Redux Toolkit.
 - **React** - JavaScript library for building user interfaces
 - **Redux Toolkit** - The official toolset for efficient Redux development
 - **Tailwind CSS** - A utility-first CSS framework for styling
-- **Tailwind CSS** - A utility-first CSS framework for styling
 - **React Hook Form** - Performant, flexible, and extensible forms with easy-to-use validation
 - **Yup** - JavaScript schema builder for value parsing and validation
 - **Firebase** - Backend platform for building web and mobile applications
+- **DnD Kit** - Modern, lightweight, accessible drag and drop toolkit for React
 
 ## ✨ Features
 
@@ -25,6 +25,7 @@ A modern task management application built with React and Redux Toolkit.
 - 📱 Responsive design
 - 🗂 Convenient state management with Redux Toolkit
 - 🔒 Authentication with protected routes using Firebase
+- 🔄 Drag and drop functionality for reordering tasks
 
 ## 🚀 Installation and Setup
 
