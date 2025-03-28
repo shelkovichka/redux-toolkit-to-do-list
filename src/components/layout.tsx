@@ -2,6 +2,12 @@ import {FC, type PropsWithChildren} from 'react';
 import {useSelector} from 'react-redux';
 import {Github} from 'lucide-react';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import Header from '@/components/header';
 import Sidebar from '@/components/sidebar';
 import {selectAuthUser} from '@/redux/selectors/auth-selectors';
@@ -21,7 +27,7 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
             <Sidebar />
           </aside>
         )}
-        <div className="w-full flex flex-col overflow-hidden">
+        <div className="w-full flex flex-col">
           <Header />
           <main className="flex-grow overflow-auto">{children}</main>
         </div>
@@ -36,16 +42,25 @@ const Layout: FC<PropsWithChildren> = ({children}) => {
         </div>
       )}
       <footer className="w-full border-t">
-        <div className="container mx-auto flex h-16 text-gray-400 items-center">
-          <a
-            href="https://github.com/shelkovichka"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 hover:text-primary"
-          >
-            <Github />
-            <span>shelkovichka</span>
-          </a>
+        <div className="flex h-12 px-8 md:px-10 text-gray-400 items-center">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a
+                  href="https://github.com/shelkovichka"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 hover:text-primary"
+                >
+                  <Github className="size-5" />
+                  <span>shelkovichka</span>
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Hi!</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </footer>
     </div>

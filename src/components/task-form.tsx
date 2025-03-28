@@ -1,9 +1,9 @@
-import { FC, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import {FC, useState} from 'react';
+import {Controller, useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
-import { cn } from "@/lib/utils";
+import {cn} from '@/lib/utils';
 import {
   Dialog,
   DialogTrigger,
@@ -11,31 +11,31 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/tooltip';
+import {Button} from '@/components/ui/button';
+import {Textarea} from '@/components/ui/textarea';
 import {
   Select,
   SelectTrigger,
   SelectValue,
   SelectContent,
   SelectItem,
-} from "@/components/ui/select";
-import DatePicker from "@/components/date-picker";
-import { Task } from "@/types/task.types";
-import { TagType } from "@/theme/types";
-import { useTheme } from "@/theme/use-theme";
+} from '@/components/ui/select';
+import DatePicker from '@/components/date-picker';
+import {Task} from '@/types/task.types';
+import {TagType} from '@/theme/types';
+import {useTheme} from '@/theme/use-theme';
 const schema = yup.object().shape({
   title: yup
-    .string()
-    .max(100, "Max number of symbols is 100")
-    .required("Title is required"),
+      .string()
+      .max(100, 'Max number of symbols is 100')
+      .required('Title is required'),
   date: yup.date().nullable().defined(),
   tag: yup.string() as yup.Schema<TagType>,
 });
@@ -64,19 +64,19 @@ const TaskForm: FC<TaskFormProps> = ({
   tooltipText,
 }) => {
   const [open, setOpen] = useState(false);
-  const { tagColors } = useTheme();
+  const {tagColors} = useTheme();
 
   const {
     handleSubmit,
     control,
-    formState: { errors },
+    formState: {errors},
     reset,
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
     defaultValues: {
-      title: initialData?.title || "",
+      title: initialData?.title || '',
       date: initialData?.date ?? null,
-      tag: initialData?.tag || "personal",
+      tag: initialData?.tag || 'personal',
     },
   });
 
@@ -104,7 +104,7 @@ const TaskForm: FC<TaskFormProps> = ({
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                className={cn("rounded-full", className)}
+                className={cn('rounded-full', className)}
                 onClick={() => setOpen(true)}
               >
                 {icon}
@@ -124,7 +124,7 @@ const TaskForm: FC<TaskFormProps> = ({
         onPointerDown={(e) => e.stopPropagation()}
       >
         <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
-          <DialogHeader className="mb-6">
+          <DialogHeader className="mb-6 text-left">
             <DialogTitle>Notes</DialogTitle>
             <DialogDescription>{buttonLabel}</DialogDescription>
           </DialogHeader>
@@ -132,11 +132,13 @@ const TaskForm: FC<TaskFormProps> = ({
             <Controller
               name="title"
               control={control}
-              render={({ field }) => (
+              render={({field}) => (
                 <Textarea
                   autoFocus={false}
                   placeholder="Task"
-                  className={`max-h-[200px] ${errors.title && "border-red-500"}`}
+                  className={`max-h-[200px] ${
+                    errors.title && 'border-red-500'
+                  }`}
                   {...field}
                 />
               )}
@@ -152,7 +154,7 @@ const TaskForm: FC<TaskFormProps> = ({
               <Controller
                 name="date"
                 control={control}
-                render={({ field }) => (
+                render={({field}) => (
                   <DatePicker
                     value={field.value}
                     onDateChange={field.onChange}
@@ -164,7 +166,7 @@ const TaskForm: FC<TaskFormProps> = ({
               <Controller
                 name="tag"
                 control={control}
-                render={({ field: { onChange, value } }) => (
+                render={({field: {onChange, value}}) => (
                   <Select onValueChange={onChange} defaultValue={value}>
                     <SelectTrigger>
                       <SelectValue placeholder="Tag" />

@@ -4,9 +4,9 @@ import {
   FieldValues,
   Path,
   FieldErrors,
-} from "react-hook-form";
+} from 'react-hook-form';
 
-import { Input } from "@/components/ui/input";
+import {Input} from '@/components/ui/input';
 
 interface FormFieldProps<T extends FieldValues> {
   name: Path<T>;
@@ -21,20 +21,19 @@ const FormField = <T extends FieldValues>({
   control,
   errors,
   placeholder,
-  type = "text",
+  type = 'text',
 }: FormFieldProps<T>) => {
-  
   return (
     <div className="relative">
       <Controller
         name={name}
         control={control}
-        render={({ field }) => (
+        render={({field}) => (
           <Input
             {...field}
             type={type}
             placeholder={placeholder}
-            className={errors[name] && "border-red-500"}
+            className={errors[name] && 'border-red-500'}
           />
         )}
       />

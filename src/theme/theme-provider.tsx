@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
 
 import {Theme} from './types';
-import {ThemeContext, TAG_COLORS} from './theme-context';
+import {ThemeContext} from './theme-context';
+import {TAG_COLORS} from './constants';
 
 interface ThemeProviderProps {
   children: React.ReactNode;

@@ -1,11 +1,19 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction, Action} from '@reduxjs/toolkit';
+import {REHYDRATE} from 'redux-persist';
 
+import {TagType} from '@/theme/types';
 import {Task, TaskState} from '@/types/task.types';
 
 const initialState: TaskState = {
   tasks: [],
   filterTag: null,
 };
+
+interface RehydrateAction extends Action {
+  payload?: {
+    tasks?: TaskState;
+  };
+}
 
 export const taskSlice = createSlice({
   name: 'tasks',
@@ -27,12 +35,26 @@ export const taskSlice = createSlice({
         Object.assign(task, changes);
       }
     },
-    setFilterTag: (state, action: PayloadAction<string | null>) => {
+    setFilterTag: (state, action: PayloadAction<TagType | null>) => {
       state.filterTag = action.payload;
     },
+    reorderTasks: (state, action: PayloadAction<Task[]>) => {
+      state.tasks = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(REHYDRATE, (state, action: RehydrateAction) => {
+      if (action.payload && action.payload.tasks) {
+        return {
+          ...action.payload.tasks,
+          filterTag: null,
+        };
+      }
+      return state;
+    });
   },
 });
 
-export const {addTask, deleteTask, updateTask, setFilterTag} =
+export const {addTask, deleteTask, updateTask, setFilterTag, reorderTasks} =
   taskSlice.actions;
 export default taskSlice.reducer;
